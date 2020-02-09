@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login_and_registration</title>
+</head>
+
+<body>
+    <h1>Login_and_registration</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}                           
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/add" , method="POST">
+        <div>
+            <label>First Name</label>
+            <input type="text" class="form-control" name="FN" placeholder="First_Name">
+            <label>Last Name</label>
+            <input type="text" class="form-control" name="LN" placeholder="Last_Name">
+            <label>Email</label>
+            <input type="text" class="form-control" name="EM" placeholder="Email">
+            <label>Password</label>
+            <input type="text" class="form-control" name="PW" placeholder="Password">
+            <label>Confirm Password</label>
+            <input type="text" class="form-control" name="Confirm PW" placeholder="Password">
+            <input type='submit' class="btn btn-outline-primary" value='Submit'>
+        </div>
+    </form>
+    <form action="/login" , method="POST">
+        <div>
+            <label>email</label>
+            <input type="text" class="form-control" name="EM" placeholder="Email">
+            <label>Password</label>
+            <input type="text" class="form-control" name="PW" placeholder="Password">
+            <input type='submit' class="btn btn-outline-primary" value='Log In'>
+        </div>
+    </form>
+</body>
+
+</html>
