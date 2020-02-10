@@ -7,8 +7,35 @@
     <title>Welcome</title>
 </head>
 <body>
-    <h1>Welcome</h1>
-    <a href='/'>logout</a>
+    <h1> Dojo Tweets </h1>
+    <h1>Welcome {{user['first_name']}}</h1>
+    <form action='/logout'>
+    <input type='submit' class="btn btn-outline-primary" value='Log out'>
+    </form>
+    <h2>Write a Tweet:</h2>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}                           
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div>
+        <form action='/on_tweet' method="POST">
+            <textarea name='tweet_content' cols="30" rows='8'></textarea>
+            <input type="submit" value='tweet!'>
+        </form>
+    </div>
+    <h2>Your Tweet:</h2>
+    <div>
+    {% for tweet in tweets%}
+        <p>{{tweet['first_name']}} {{tweet['last_name']}} tweets {{tweet['tweet']}} </p>
+        {% if session['user_id'] == tweet.author %}
+            <a href="/on_delete/{{tweet['id']}}"><button>Delete</button></a>
+            <a href="/edit/{{tweet['id']}}"><button>Edit</button></a>
+            {% endif %}
+        {% endfor %}
+    </div>
     
 </body>
 </html>
