@@ -98,11 +98,9 @@ def success():
         query = 'SELECT tweets.id, tweets.author, tweets.tweet, registrations.first_name, registrations.last_name FROM registrations JOIN tweets ON registrations.id = tweets.author'
         mysql = connectToMySQL('registration_with_email')
         tweets = mysql.query_db(query)
-        
         return render_template('welcome.html', user=result[0], tweets=tweets)
     else:
         return redirect('/')
-
 
 @app.route('/logout')
 def logout():
@@ -162,6 +160,18 @@ def on_edit(tweet_id):
     mysql = connectToMySQL('registration_with_email')
     mysql.query_db(query, data)
     
+    return redirect('/success')
+
+@app.route('/like/<tweet_id>')
+def likes(tweet_id):
+    query = "INSERT INTO tweets_users_have_liked (tweets_id, registrations_id) VALUES ( %(tweet_id)s, %(user_id)s);"
+    data = {
+        'user_id' : session['user_id'],
+        'tweet_id': tweet_id
+    }
+    mysql = connectToMySQL('registration_with_email')
+    mysql.query_db(query, data)
+    # print('THIS IS RESULT', result)
     return redirect('/success')
 
 

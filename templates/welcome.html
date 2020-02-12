@@ -33,6 +33,7 @@
         {% if session['user_id'] == tweet.author %}
             <a href="/on_delete/{{tweet['id']}}"><button>Delete</button></a>
             <a href="/edit/{{tweet['id']}}"><button>Edit</button></a>
+            <a href="/like/{{tweet['id']}}"><button>Like</button></a>
             {% endif %}
         {% endfor %}
     </div>
