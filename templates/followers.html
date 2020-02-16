@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Followers</title>
+</head>
+<body>
+    <h2>Users not followed</h2>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for user in not_followed %}
+            <tr>
+                <td>{{user['first_name']}} {{user['last_name']}}</td>
+                <td><a href="/on_follow/{{user['id']}}">Follow</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Followed users</h2>
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for user in followed %}
+            <tr>
+                <td>{{user['first_name']}} {{user['last_name']}}</td>
+                <td><a href="/un_follow/{{user['id']}}">Un_Follow</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</body>
+</html>

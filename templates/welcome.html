@@ -12,6 +12,7 @@
     <form action='/logout'>
     <input type='submit' class="btn btn-outline-primary" value='Log out'>
     </form>
+    <a href="/follow"><button>Follow</button></a>
     <h2>Write a Tweet:</h2>
     {% with messages = get_flashed_messages() %}
         {% if messages %}                           
@@ -28,14 +29,19 @@
     </div>
     <h2>Your Tweet:</h2>
     <div>
-    {% for tweet in tweets%}
-        <p>{{tweet['first_name']}} {{tweet['last_name']}} tweets {{tweet['tweet']}} </p>
+    {% for tweet in tweets_of_followed_user%}
+        <p>{{tweet['first_name']}} {{tweet['last_name']}} tweets_of_followed_user {{tweet['tweet']}} </p>
         {% if session['user_id'] == tweet.author %}
             <a href="/on_delete/{{tweet['id']}}"><button>Delete</button></a>
-            <a href="/edit/{{tweet['id']}}"><button>Edit</button></a>
-            <a href="/like/{{tweet['id']}}"><button>Like</button></a>
-            {% endif %}
-        {% endfor %}
+            <a href="/edit/{{tweet['id']}}"><button>Edit</button></a>         
+        {% endif %}
+            <a href="/details/{{tweet['id']}}"><button>Details</button></a>
+        {% if tweet['id'] in liked_list  %}
+            <a href="/unlike/{{tweet['id']}}"><button>Un_Like</button></a>
+        {% else  %}
+             <a href="/like/{{tweet['id']}}"><button>Like</button></a>
+        {% endif %}
+    {% endfor %}
     </div>
     
 </body>

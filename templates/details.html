@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Details</title>
+</head>
+<body>
+    <h1>Details link</h1>
+    <h2>Tweet Detail</h2>
+    <p>Created by: {{details['first_name']}}  {{details['last_name']}}</p>
+    <p>Content: {{details['tweet']}}</p>
+    <p>Created at: {{details['created_at']}}</p>
+    <p>Updated at: {{details['updated_at']}}</p>
+    <hr>
+    <p>Liked by: </p>
+    {% for user in liked %}
+    <p>{{ user['first_name'] }} {{ user['last_name'] }} </p>
+    {% endfor %}
+
+    <a href="/success"><button>home`</button></a>
+
+    
+
+    
+</body>
+</html>
